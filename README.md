@@ -1,6 +1,6 @@
 # Quant Framework ReadMe
 
-All rights reserved Baruch Oltman
+MIT
 
 ---
 
@@ -208,4 +208,4 @@ This framework provides a robust foundation for building custom trading systems.
 
 ## License
 
-All rights reserved Baruch Oltman. This is a closed source project. Do not distribute, modify, or contribute without explicit permission.
+MIT
