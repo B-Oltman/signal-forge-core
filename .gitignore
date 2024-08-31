@@ -1,0 +1,104 @@
+# Visual Studio Code
+.vscode/
+.vscode/*
+
+# CMake build artifacts
+/build/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+*.cmake
+
+# Sierra Chart ACS_Source binaries
+*.dll
+*.exe
+*.pdb
+*.ilk
+*.obj
+*.lib
+*.pch
+*.log
+*.idb
+
+# Temporary files
+*.tmp
+*.log
+*.pid
+*.seed
+*.pid.lock
+
+# Compiled source files
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+*.obj
+*.pyc
+*.pyo
+*.pyd
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+*.def
+*.exp
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Dynamic libraries
+*.dylib
+*.dll
+*.bundle
+
+# Debug files
+*.ncb
+*.sdf
+*.opendb
+*.vcxproj.user
+*.code-workspace
+*.VC.db
+*.VC.opendb
+*.ipch
+
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# CLion
+.cmake/
+cmake-build-*/
+__cmake_lint_config__
+.idea/
+.clangd
+
+# Xcode
+build/
+DerivedData/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+xcuserdata/
+*.xccheckout
+*.xcworkspacedata
+*.xcscmblueprint
+*.xcuserstate
+
+# Qt Creator
+*.pro.user
+*.qmake.stash
+*.qmake.cache

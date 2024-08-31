@@ -1,0 +1,155 @@
+## Crash Course on Math Calculations for Trading Systems
+
+### Introduction
+This crash course provides an overview of essential math calculations used in trading systems, specifically focusing on utility functions, moving averages, volatility and momentum indicators, bar-based calculations, and futures-specific calculations. Each section includes a brief explanation of the calculation, usage scenarios, and example code snippets.
+
+### Utility Functions
+
+#### Sum
+**Description:** Computes the sum of the last `length` elements of a data vector.
+**Usage Scenario:** Calculate the total volume traded over a specified period.
+
+```cpp
+float Sum(const std::vector<float>& data, int length);
+```
+
+#### Mean
+**Description:** Computes the mean (average) of the last `length` elements of a data vector.
+**Usage Scenario:** Determine the average price, return, or volume over a specified period.
+
+```cpp
+float Mean(const std::vector<float>& data, int length);
+```
+
+#### Variance
+**Description:** Computes the variance of the last `length` elements of a data vector.
+**Usage Scenario:** Assess the volatility of an asset's price.
+
+```cpp
+float Variance(const std::vector<float>& data, int length);
+```
+
+#### Standard Deviation
+**Description:** Computes the standard deviation of the last `length` elements of a data vector.
+**Usage Scenario:** Quantify the amount of variation or dispersion in a set of price data.
+
+```cpp
+float StandardDeviation(const std::vector<float>& data, int length);
+```
+
+### Moving Averages
+
+#### Simple Moving Average (SMA)
+**Description:** Computes the SMA of the last `length` elements of a data vector.
+**Usage Scenario:** Smooth out price data to identify trends over a specified period.
+
+```cpp
+float CalculateSMA(const std::vector<float>& data, int length);
+```
+
+#### Exponential Moving Average (EMA)
+**Description:** Computes the EMA of the last `length` elements of a data vector.
+**Usage Scenario:** Identify trends and reversals by giving more weight to recent prices.
+
+```cpp
+float CalculateEMA(const std::vector<float>& data, int length);
+```
+
+### Volatility and Momentum
+
+#### Relative Strength Index (RSI)
+**Description:** Computes the RSI based on the provided gains and losses.
+**Usage Scenario:** Identify overbought or oversold conditions in a market.
+
+```cpp
+float CalculateRSI(const std::vector<float>& gains, const std::vector<float>& losses, int length);
+```
+
+#### Bollinger Bands
+**Description:** Computes the Bollinger Bands (upper band, middle band, lower band).
+**Usage Scenario:** Measure market volatility and identify potential overbought or oversold conditions.
+
+```cpp
+std::tuple<float, float, float> CalculateBollingerBands(const std::vector<float>& data, int length, float num_std_dev);
+```
+
+#### Moving Average Convergence Divergence (MACD)
+**Description:** Computes the MACD and its signal line.
+**Usage Scenario:** Identify changes in the strength, direction, momentum, and duration of a trend.
+
+```cpp
+std::pair<float, float> CalculateMACD(const std::vector<float>& data, int short_length, int long_length, int signal_length);
+```
+
+### Bar-based Calculations
+
+#### OHLC Average
+**Description:** Calculates the OHLC average of a bar.
+**Usage Scenario:** Provide a single representative value for a bar in technical analysis.
+
+```cpp
+double CalculateOHLCAvg(const BarData& bar);
+```
+
+#### HLC Average
+**Description:** Calculates the HLC average of a bar.
+**Usage Scenario:** Provide a simpler representation of price data for various technical indicators.
+
+```cpp
+double CalculateHLCAvg(const BarData& bar);
+```
+
+#### HL Average
+**Description:** Calculates the HL average of a bar.
+**Usage Scenario:** Provide a basic measure of central tendency in price data.
+
+```cpp
+double CalculateHLAverage(const BarData& bar);
+```
+
+#### Volume-Weighted Average Price (VWAP)
+**Description:** Calculates the VWAP for a vector of BarData.
+**Usage Scenario:** Measure the average price a security has traded at throughout the day, based on both volume and price.
+
+```cpp
+double CalculateVWAP(const std::vector<BarData>& bars);
+```
+
+### Futures-specific Calculations
+
+#### Cost of Carry
+**Description:** Computes the cost of carry for a futures contract.
+**Usage Scenario:** Determine the fair value of a futures contract by accounting for storage and interest costs.
+
+```cpp
+double CalculateCostOfCarry(double spot_price, double rate, double time_to_maturity, double storage_cost, double convenience_yield);
+```
+
+#### Futures Price
+**Description:** Computes the futures price using the cost of carry model.
+**Usage Scenario:** Determine the fair value of a futures contract for pricing and arbitrage strategies.
+
+```cpp
+double CalculateFuturesPrice(double spot_price, double rate, double time_to_maturity, double storage_cost, double convenience_yield);
+```
+
+#### Initial Margin
+**Description:** Computes the initial margin requirement for a futures contract.
+**Usage Scenario:** Determine the upfront payment required to enter into a futures position.
+
+```cpp
+double CalculateInitialMargin(double contract_value, double margin_rate);
+```
+
+#### Maintenance Margin
+**Description:** Computes the maintenance margin requirement for a futures contract.
+**Usage Scenario:** Ensure sufficient capital is available to maintain open futures positions.
+
+```cpp
+double CalculateMaintenanceMargin(double contract_value, double maintenance_margin_rate);
+```
+
+### Conclusion
+These calculations form the backbone of technical analysis and risk management in trading systems. By understanding and utilizing these functions, traders can make more informed decisions, identify trends and reversals, measure volatility, and manage risk effectively.
+
+For more detailed examples and implementations, refer to the `Calculations.h` file and the corresponding source files in the `QuantCore` project.

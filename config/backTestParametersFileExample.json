@@ -1,0 +1,117 @@
+[
+    {
+      "startDate": "2024-01-01 00:00:00",
+      "endDate": "2024-01-31 23:59:59",
+      "tradeSystemParameterGroup": {
+        "lastUpdated": "2024-07-23 12:34:56",
+        "configGroupId": "1627048494000-0",
+        "parameters": [
+          {
+            "key": "movingAverageType",
+            "name": "Moving Average Type",
+            "valueType": 8,
+            "value": "Simple",
+            "minValue": 0,
+            "maxValue": 0,
+            "options": ["Simple", "Exponential", "Weighted"],
+            "displayOrder": 0
+          },
+          {
+            "key": "timePeriod",
+            "name": "Time Period",
+            "valueType": 3,
+            "value": 14,
+            "minValue": 1,
+            "maxValue": 50,
+            "options": [],
+            "displayOrder": 1
+          },
+          {
+            "key": "stopLoss",
+            "name": "Stop Loss",
+            "valueType": 2,
+            "value": 0.05,
+            "minValue": 0.01,
+            "maxValue": 0.1,
+            "options": [],
+            "displayOrder": 2
+          },
+          {
+            "key": "takeProfit",
+            "name": "Take Profit",
+            "valueType": 2,
+            "value": 0.1,
+            "minValue": 0.05,
+            "maxValue": 0.2,
+            "options": [],
+            "displayOrder": 3
+          },
+          {
+            "key": "tradeSize",
+            "name": "Trade Size",
+            "valueType": 1,
+            "value": 100,
+            "minValue": 10,
+            "maxValue": 1000,
+            "options": [],
+            "displayOrder": 4
+          },
+          {
+            "key": "riskLevel",
+            "name": "Risk Level",
+            "valueType": 8,
+            "value": "Medium",
+            "minValue": 0,
+            "maxValue": 0,
+            "options": ["Low", "Medium", "High"],
+            "displayOrder": 5
+          }          
+        ]
+      },
+      "backtestResults": {
+        "profit": 15000.50,
+        "maxDrawdown": 2500.75,
+        "winRate": 0.65,
+        "totalTrades": 100,
+        "winningTrades": 65,
+        "losingTrades": 35,
+        "averageWin": 500.00,
+        "averageLoss": 300.00,
+        "profitFactor": 1.67,
+        "maxConsecutiveWins": 8,
+        "maxConsecutiveLosses": 5,
+        "averageTradeDuration": 45.0,
+        "largestWin": 2000.00,
+        "largestLoss": 1500.00,
+        "sharpeRatio": 1.25,
+        "sortinoRatio": 1.50,
+        "calmarRatio": 2.00,
+        "closedProfit": 14500.00,
+        "closedLoss": 500.50,
+        "totalCommission": 300.00,
+        "maximumRunup": 18000.00,
+        "maximumTradeRunup": 2000.00,
+        "maximumTradeDrawdown": 1200.00,
+        "maximumOpenPositionProfit": 16000.00,
+        "maximumOpenPositionLoss": 2200.00,
+        "totalLongTrades": 60,
+        "totalShortTrades": 40,
+        "totalWinningQuantity": 600.0,
+        "totalLosingQuantity": 400.0,
+        "totalFilledQuantity": 1000.0,
+        "largestTradeQuantity": 50.0,
+        "timeInWinningTrades": 400,
+        "timeInLosingTrades": 200,
+        "maxConsecutiveWinners": 8,
+        "maxConsecutiveLosers": 5,
+        "lastTradeProfitLoss": 200.00,
+        "lastTradeQuantity": 10.0,
+        "lastFillDateTime": "2024-01-31 15:30:00",
+        "lastEntryDateTime": "2024-01-31 15:00:00",
+        "lastExitDateTime": "2024-01-31 15:30:00",
+        "totalBuyQuantity": 700.0,
+        "totalSellQuantity": 300.0
+      }
+    }
+  ]
+  

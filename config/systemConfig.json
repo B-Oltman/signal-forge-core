@@ -1,0 +1,33 @@
+{
+    "logLevel": "INFO",
+    "filePaths": {        
+    },
+    "sessionSettings": {
+        "barType": "m",
+        "barPeriod": 5,
+        "updateIntervalType": "New_Bar",
+        "tradingWindow": {
+            "Monday": {
+                "startTime": "09:00",
+                "endTime": "16:00"
+            },
+            "Tuesday": {
+                "startTime": "09:00",
+                "endTime": "16:00"
+            },
+            "Wednesday": {
+                "startTime": "09:00",
+                "endTime": "16:00"
+            }
+        }
+    },
+    "systemSettings": {
+        "systemName": "Trade System Name",
+        "enableLogging": true,
+        "liveResultsSnapshotIntervalMinutes": 10
+    },
+    "dataProcessingServer": {
+        "host": "localhost",
+        "port": "8000"
+    }
+}

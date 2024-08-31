@@ -1,0 +1,220 @@
+Here is an updated README that includes details about how the `MLTuningManager` works, how to use it with the trading system, and the interactions with the Python server for machine learning tuning.
+
+```markdown
+# MLTuningManager Module
+
+## Overview
+The `MLTuningManager` module is designed to handle the collection, processing, and tuning of trade system parameters using machine learning. This module works in conjunction with a Python server to optimize trading parameters based on real-time data.
+
+## Features
+- **Asynchronous Data Processing**: Collects data asynchronously and processes it in batches.
+- **HTTP Server Integration**: Receives data blobs via HTTP requests.
+- **Machine Learning Integration**: Sends collected data to a Python server for machine learning-based parameter tuning.
+- **Thread-safe Queue**: Uses a thread-safe queue to handle incoming data blobs.
+- **Conditional Activation**: Activated only if included in the trade system builder using the `WithParameterTuner` method.
+
+## Usage
+
+### Including in the Trade System
+To include the `MLTuningManager` in your trade system, use the `WithParameterTuner` method in your trade system builder:
+```cpp
+auto tradingSystem = TradeSystemBuilder()
+                        .WithParameterTuner(tuner)
+                        .Build();
+```
+
+### Pushing New Data
+To push new data into the `MLTuningManager`, use the `PushNewData` method:
+```cpp
+DataBlob newData;
+newData.key = "exampleKey";
+newData.data = someJsonData;
+MLTuningManager.PushNewData(newData);
+```
+
+## Interactions with Python Server
+
+### Sending Data for Processing
+The `MLTuningManager` sends the collected data to the Python server for processing. This interaction happens through an HTTP POST request to the `/process-data` endpoint on the Python server. The data sent includes current trade parameters and collected data blobs.
+
+### Example Data Sent to Python Server
+```json
+{
+  "parameters": [
+    {
+      "key": "param1",
+      "value": 10.0
+    },
+    {
+      "key": "param2",
+      "value": 5
+    }
+  ],
+  "dataBlobs": [
+    {
+      "key": "exampleKey",
+      "data": {
+        "timestamp": "2024-07-24T12:34:56Z",
+        "price": 123.45,
+        "volume": 1000
+      }
+    }
+  ]
+}
+```
+
+### Example Response from Python Server
+The Python server processes the data and returns optimized parameters:
+```json
+{
+  "optimizedParameters": [
+    {
+      "key": "param1",
+      "value": 15.0
+    },
+    {
+      "key": "param2",
+      "value": 7
+    }
+  ]
+}
+```
+
+## Python Server Endpoints
+
+### `/receive-data`
+**Method**: `POST`
+
+**Description**: Receives data blobs from external sources.
+
+**Request Format**:
+```json
+{
+  "key": "exampleKey",
+  "data": {
+    "timestamp": "2024-07-24T12:34:56Z",
+    "price": 123.45,
+    "volume": 1000
+  }
+}
+```
+
+**Response Format**:
+```json
+{
+  "status": "Data received"
+}
+```
+
+### `/process-data`
+**Method**: `POST`
+
+**Description**: Processes the received data blobs and optimizes trade parameters using machine learning.
+
+**Request Format**:
+```json
+{
+  "parameters": [
+    {
+      "key": "param1",
+      "value": 10.0
+    },
+    {
+      "key": "param2",
+      "value": 5
+    }
+  ],
+  "dataBlobs": [
+    {
+      "key": "exampleKey",
+      "data": {
+        "timestamp": "2024-07-24T12:34:56Z",
+        "price": 123.45,
+        "volume": 1000
+      }
+    }
+  ]
+}
+```
+
+**Response Format**:
+```json
+{
+  "optimizedParameters": [
+    {
+      "key": "param1",
+      "value": 15.0
+    },
+    {
+      "key": "param2",
+      "value": 7
+    }
+  ]
+}
+```
+
+## Example PowerShell Script to Simulate Data Generation
+
+### Generate Data Blobs
+To simulate generating data blobs, you can use the following PowerShell script:
+
+```powershell
+# generate-data-blobs.ps1
+
+$uri = "http://localhost:8000/receive-data"
+
+$data = @{
+    key = "exampleKey"
+    data = @{
+        timestamp = (Get-Date -Format "yyyy-MM-ddTHH:mm:ssZ")
+        price = 123.45
+        volume = 1000
+    }
+}
+
+$json = $data | ConvertTo-Json
+
+Invoke-RestMethod -Uri $uri -Method Post -Body $json -ContentType "application/json"
+```
+
+### Process Data
+To simulate sending data for processing, you can use the following PowerShell script:
+
+```powershell
+# process-data.ps1
+
+$uri = "http://localhost:8000/process-data"
+
+$data = @{
+    parameters = @(
+        @{
+            key = "param1"
+            value = 10.0
+        },
+        @{
+            key = "param2"
+            value = 5
+        }
+    )
+    dataBlobs = @(
+        @{
+            key = "exampleKey"
+            data = @{
+                timestamp = "2024-07-24T12:34:56Z"
+                price = 123.45
+                volume = 1000
+            }
+        }
+    )
+}
+
+$json = $data | ConvertTo-Json
+
+Invoke-RestMethod -Uri $uri -Method Post -Body $json -ContentType "application/json"
+```
+
+## Notes
+- Ensure the Python server is running and accessible at `http://localhost:8000`.
+- Adjust the trade parameter keys and values according to your specific requirements.
+- The `MLTuningManager` module relies on the `ITuningDataProcessor` interface for processing data. Implement this interface as per your needs for integrating with the machine learning model.
+```

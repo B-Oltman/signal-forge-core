@@ -1,0 +1,97 @@
+# TradeSystem Module
+
+The `TradeSystem` module provides a flexible and easy-to-use way to create and configure trade systems using the `TradeSystemBuilder` class. This module supports default implementations for various components and allows for custom implementations to be specified as needed.
+
+## Components
+
+The `TradeSystem` module is composed of the following components:
+
+- `ISignalGenerator`
+- `IRiskManager`
+- `IOrderExecutor`
+- `IOrderManager`
+- `IMarketContext`
+- `TradingContext`
+- `ITradingPlatform`
+
+## Default Implementations
+
+The module provides default implementations for each component:
+
+- `DefaultSignalGenerator`
+- `DefaultRiskManager`
+- `DefaultOrderExecutor`
+- `DefaultOrderManager`
+- `DefaultMarketContext`
+- `DefaultTradingContext`
+
+## TradeSystemBuilder
+
+The `TradeSystemBuilder` class simplifies the creation and configuration of trade systems. It supports both default and custom implementations of the components.
+
+### Usage
+
+### Creating a TradeSystem with Default Implementations
+
+```cpp
+#include <memory>
+#include "TradeSystemBuilder.h"
+#include "DefaultTradeSystem.h"
+#include "ParameterManager.h"
+
+int main() {
+    // Create and initialize the DefaultTradeSystem with default implementations
+    auto defaultTradeSystem = TradeSystemBuilder<DefaultTradeSystem>().Build();
+
+    // Example usage
+    defaultTradeSystem->Initialize();
+    defaultTradeSystem->Process();
+
+    return 0;
+}
+```
+
+### Creating a TradeSystem with Custom Implementations
+
+```cpp
+#include <memory>
+#include "TradeSystemBuilder.h"
+#include "DefaultTradeSystem.h"
+#include "ParameterManager.h"
+// Include custom component implementations if any
+
+int main() {
+    auto customSignalGenerator = std::make_unique<CustomSignalGenerator>();
+    auto customRiskManager = std::make_unique<CustomRiskManager>();
+    auto customOrderExecutor = std::make_unique<CustomOrderExecutor>();
+    auto customOrderManager = std::make_unique<CustomOrderManager>();
+    auto customMarketContext = std::make_unique<CustomMarketContext>();
+    auto customTradingContext = std::make_unique<CustomTradingContext>();
+
+    auto customTradeSystem = TradeSystemBuilder<DefaultTradeSystem>()
+        .WithSignalGenerator(std::move(customSignalGenerator))
+        .WithRiskManager(std::move(customRiskManager))
+        .WithOrderExecutor(std::move(customOrderExecutor))
+        .WithOrderManager(std::move(customOrderManager))
+        .WithMarketContext(std::move(customMarketContext))
+        .WithTradingContext(std::move(customTradingContext))
+        .Build();
+
+    // Example usage
+    customTradeSystem->Initialize();
+    customTradeSystem->Process();
+
+    return 0;
+}
+```
+
+### Validating Components
+
+The `TradeSystemBuilder` ensures that all necessary components are set before building the trade system. If any component is missing, a runtime error is thrown.
+
+### Key Features
+
+- **Flexible Configuration:** Easily specify custom implementations for each component.
+- **Default Implementations:** Use provided default implementations to simplify setup.
+- **Fluent Interface:** Chain methods for a readable and concise configuration.
+- **Validation:** Ensure all required components are set before building the trade system.
