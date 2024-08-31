@@ -1,3 +1,9 @@
+# Status
+
+This was a project I planned to finish for my own personal trading, but I ended up decideing to go with an existing platform. Rather than it going to waste, I decided to open source it incase anyone wants to take over and finish it. 
+
+The idea is this is a platform that can be implemented with different execution systems, currently only work for Sierra Chart is done. There is a server and a UI that go along with the systems. Everything is still very much hard-coded to my environment, significant work is needed to make this more general.
+
 # Quant Framework ReadMe
 
 MIT
